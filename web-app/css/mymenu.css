@@ -1,0 +1,26 @@
+#nav {
+    background-color: highlight;
+    width: 100%;
+    margin-top: 2px;
+}
+
+a:LINK {
+    /*color: white;*/
+    font-size: 19px;
+}
+p{
+    margin-left: 4px;
+    /*font-weight: bold;*/
+}
+#d1{
+    margin-left: 8px;
+}
+body{
+    font-size: 20px;
+}
+.btitle{
+    color:white;
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 8px;
+}

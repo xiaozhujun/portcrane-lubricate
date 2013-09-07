@@ -1,0 +1,31 @@
+body
+{
+    margin: 0;
+}
+
+#wrapper
+{
+    margin: 0 auto;
+    width: 1400px;
+}
+
+#container
+{
+   float: left;   ;
+   width: 100%;
+   min-height: 600px;
+}
+#menuContainer
+{
+   float: left;
+    width: 15%;
+}
+
+#mainContainer
+{
+   float: left;
+   width: 82%;
+    margin-left: 10px;
+    border: 1px solid #AAAAAA;
+    margin-top: 5px;
+}

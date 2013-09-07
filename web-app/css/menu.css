@@ -1,0 +1,45 @@
+#menuContainer
+{
+    background-color: #EEEEEE;
+    border: solid 1px #eee;
+    min-height: 600px;
+}
+
+.menuFunc,.menuItemList,.menuItem
+{
+    width: 100%;
+}
+
+.menuFuncName
+{
+    width: 100%;
+    background-color: #666;
+    padding: 5px 0px;
+    color:white;
+
+}
+
+.menuItems
+{
+    width: 100%;
+}
+
+.menuItem
+{
+    padding-left: 20px;
+    padding: 5px 0px;
+    cursor: pointer;
+    background-color:#EEEEEE ;
+
+}
+
+.menuItem:hover
+{
+    background-color:white;
+}
+
+.menuItem a
+{
+    text-decoration: none;
+    color: #000000;
+}

@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+#titleContainerDiv
+{
+	float: left;
+	width: 100%;
+  background-color: #eee;
+}
+#titleDiv
+{
+	float: left;
+	width: 100%;
+	font-family: "微软雅黑";
+	font-weight: bold;
+  font-size: 40px;
+	padding-top: 10px;
+  padding-bottom: 10px;
+	text-align: center;
+
+}
+
+#title2Div
+{
+	float: left;
+	width: 90%;
+	font-family: "微软雅黑";
+	font-weight: bold;
+  	font-size: 30px;
+	padding-top: 10px;
+  	padding-bottom: 10px;
+	text-align: right;
+	color: red;
+}
+
+#devNameDiv
+{
+	
+	font-family: "楷体";
+	font-weight: bold;
+  	font-size: 25 ;
+}
+
+
+.tabs
+{
+  float: left;
+  width: 100%;
+  margin: 0;
+  margin-top: 1px;
+  margin-left: 1px;
+  padding: 0;
+  list-style: none;
+  border-bottom: none;
+  font-family: "宋体", sans-serif;
+  cursor: pointer;
+}
+
+.tabItem
+{
+  float:left;
+  padding: 10px 15px;
+  margin-right: 1px;
+  background-color: #eee;
+  cursor: pointer;
+  text-align: center;
+}
+#mainTab .tabItem
+{
+  padding: 5px 0;
+  width: 150;
+}
+.tabItem:HOVER
+{
+  background: #69c;
+}
+
+.tabs .mainselected
+{
+  background: #69c;
+}
+
+.tabs .containerselected
+{
+  background: #69c;
+}
+

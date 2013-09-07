@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+#t1{
+
+	border: 1px solid #BEBEBE;
+	margin-left: 236px;
+	width: 1165px;
+	height: 331px;
+	margin-top: 0px;
+	
+}
+#title{
+	background-color:#DCDCDC;
+	border: 1px solid #DFE9F6;
+	
+	width: 1165px;
+	height: 22px;
+	margin-top: 0px;
+}
+#title:HOVER{
+	background-color:#DFE9F6;
+}
+p{
+	margin-left: 12px;
+	margin-top: 2px;
+	
+}

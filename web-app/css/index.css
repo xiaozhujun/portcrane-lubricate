@@ -1,0 +1,39 @@
+#t1{
+    width: 100%;
+    float: left;
+}
+#title{
+    background-color: #999999;
+    width:100%;
+    height: 35px;
+    float: left;
+}
+#title:hover{
+                background-color:#DFE9F6 ;
+            }
+p{
+    margin-left: 8px;
+    margin-top: 2px;
+}
+#wel{
+    margin-left: 10px;
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    margin-top: 8px;
+
+}
+#welinfo{
+    margin-left: 12px;
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 18px;
+}
+#content{
+    width: 100%;
+    height: 150px;
+
+}
+.pic{
+    margin-left: 10px;
+}
