@@ -1,4 +1,4 @@
-package model;
+package dbmodel;
 
 import com.sun.jna.StringArray;
 
@@ -23,6 +23,8 @@ public class lubricate {
     private String lube;
 
     private String refuelcycle;
+
+    private String phone;
 
     public String getName() {
         return name;
@@ -78,5 +80,13 @@ public class lubricate {
 
     public void setRefuelcycle(String refuelcycle) {
         this.refuelcycle = refuelcycle;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
