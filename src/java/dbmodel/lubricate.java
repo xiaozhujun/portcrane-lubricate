@@ -2,6 +2,8 @@ package dbmodel;
 
 import com.sun.jna.StringArray;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: ThinkPad
@@ -25,6 +27,10 @@ public class lubricate {
     private String refuelcycle;
 
     private String phone;
+
+    private int days;
+
+    private Date lubricatetime;
 
     public String getName() {
         return name;
@@ -88,5 +94,21 @@ public class lubricate {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public Date getLubricatetime() {
+        return lubricatetime;
+    }
+
+    public void setLubricatetime(Date lubricatetime) {
+        this.lubricatetime = lubricatetime;
     }
 }

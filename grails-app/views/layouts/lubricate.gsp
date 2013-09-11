@@ -65,7 +65,13 @@
                         <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'devicelubricate']">润滑设备信息列表</g:link></span></div>
                     </div>
                 </div>
-
+                <div class="menuFunc">
+                    <div class="menuFuncName"><p>润滑设备记录管理</p></div>
+                    <div class="menuItemList">
+                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'lubricateRecord']">添加润滑设备记录</g:link></span></div>
+                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'lubricateRecord']">润滑设备记录列表</g:link></span></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="mainContainer"><g:layoutBody/></div>

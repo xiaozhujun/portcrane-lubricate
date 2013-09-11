@@ -42,6 +42,21 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
          runtime 'mysql:mysql-connector-java:5.1.22'
+        runtime 'junit:junit:4.11'
+        runtime 'log4j:log4j:1.2.17'
+
+        runtime 'javax.servlet:servlet-api:2.5'
+        runtime 'org.apache.commons:commons-lang3:3.1'
+        runtime 'commons-collections:commons-collections:3.2.1'
+        runtime 'commons-digester:commons-digester:2.1'
+        runtime 'javax.servlet.jsp.jstl:jstl-api:1.2'
+        runtime 'javax.servlet.jsp:jsp-api:2.1'
+        runtime 'commons-fileupload:commons-fileupload:1.2.1'
+        runtime 'commons-io:commons-io:1.3.1'
+        runtime 'commons-beanutils:commons-beanutils:1.8.0'
+        runtime 'org.codehaus.groovy:groovy-all:1.7.5'
+        runtime 'javax.servlet:jstl:1.2'
+        runtime 'taglibs:standard:1.1.2'
     }
 
     plugins {

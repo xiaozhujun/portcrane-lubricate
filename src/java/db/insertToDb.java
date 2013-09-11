@@ -1,11 +1,10 @@
 package db;
-
 import dbmodel.MyDataSource;
 import java.sql.*;
 import java.util.*;
 import dbmodel.lubricate;
 
-
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 /**
  * Created with IntelliJ IDEA.
  * User: ThinkPad
@@ -80,9 +79,6 @@ public class insertToDb {
          }catch (SQLException e){
              e.printStackTrace();
          }
-
-
-
      }
     public List<String> getCondition(){
         String sql="select Refuelcycle from lubricate group by Refuelcycle";
@@ -99,11 +95,10 @@ public class insertToDb {
         }
          return list;
     }
-    public void executeJob(){
-
-        List<String> ll=getCondition();
+    public void executeJob(){         //执行自动润滑的任务
+        List<lubricate> ll=getlubricateDays();
         Iterator t=ll.iterator();
-        while(t.hasNext()){
+       /* while(t.hasNext()){
         String condition=(String)t.next();
         List<lubricate> list=getLubricate(condition);
         Iterator it=list.iterator();
@@ -111,6 +106,39 @@ public class insertToDb {
             lubricate l=(lubricate)it.next();
             insetToSend("您的设备需要润滑了","名称:"+l.getName()+",位置:"+l.getLocation()+",类型:"+l.getType()+",润滑剂:"+l.getLube()+",润滑周期"+l.getRefuelcycle()+",清洗周期:"+l.getCleancycle(),l.getPhone(),l.getRefuelcycle());
         }
+        }*/
+        while(t.hasNext()){
+           lubricate l=(lubricate)t.next();
+            //System.out.print(l.getDays()+"------"+l.getName()+"-------"+l.getRefuelcycle());
+            if(l.getRefuelcycle().equals("一周")){
+                 if(l.getDays()<7&&l.getDays()>7*3/4){
+                     //插入数据，将信息内容置为未发送
+                     insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+                 }else{
+                    System.out.println("不发送");
+                 }
+            }
+            if(l.getRefuelcycle().equals("三个月")){
+               System.out.print("进入三个月");
+               if(l.getDays()<90&&l.getDays()>90*3/4){
+                   //插入数据，将信息内容置为未发送
+                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+               }else{
+                   System.out.println("不发送");
+               }
+           }
+            if(l.getRefuelcycle().equals("一天")){
+               System.out.print("进入一天");
+               if(l.getDays()>1){
+                   //插入数据，将信息内容置为未发送
+                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期为:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+               }else{
+                   System.out.println("不发送");
+               }
+           }
+            if(l.getRefuelcycle().equals("按需")){
+                  System.out.println("进入按需");
+           }
         }
 
     }
@@ -127,12 +155,6 @@ public class insertToDb {
             }
 
         }
-
-
-
-
-
-
     }
    public List<String> getInspectResult(){         //查出所有异常的
          String  sql="select d.numbers,itr.dnumber_id from inspect3.inspect_item_record itr,inspect3.device d where itr.dnumber_id=d.id and itr.ivalue_id=2  group by itr.dnumber_id";
@@ -150,5 +172,28 @@ public class insertToDb {
          }
             return list;
    }
-
+    public List<lubricate> getlubricateDays(){       //有devnum关联求出当前日期与润滑时间的相隔的天数
+        String sql="select datediff(now(),lr.lubricatetime),l.name,l.refuelcycle,d.phone,lr.lubricatetime from lubricate_record lr,lubricate l,devicelubricate d where l.number=lr.devnum and lr.devnum=d.device_num";
+        List<lubricate> list=new ArrayList<lubricate>();
+        try{
+            statement=connection.prepareStatement(sql);
+            rs=statement.executeQuery();
+            while(rs.next()){
+               lubricate l=new lubricate();
+               l.setDays(rs.getInt(1));
+               l.setName(rs.getString(2));
+               l.setRefuelcycle(rs.getString(3));
+               l.setPhone(rs.getString(4));
+               l.setLubricatetime(rs.getDate(5));
+               list.add(l);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+     public static void main(String args[]){
+         insertToDb d=new insertToDb();
+           d.executeJob();
+     }
 }
