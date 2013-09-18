@@ -70,7 +70,7 @@ public class insertToDb {
         return list;
     }
     public  void insetToSend(String title,String body,String receiver,String period){
-        String sql="insert into sms.sms_send(title,message_body,receiverphone,period,status,createtime)values(?,?,?,?,?,?)";
+        String sql="insert into sms.sms_send(title,message_body,receiverphone,period,status,createtime,version)values(?,?,?,?,?,?,?)";
         try{
             statement=connection.prepareStatement(sql);
             statement.setString(1,title);
@@ -79,6 +79,7 @@ public class insertToDb {
             statement.setString(4,period);
             statement.setString(5,"未发送");
             statement.setDate(6,new java.sql.Date(new java.util.Date().getTime()));
+            statement.setString(7,"0");
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -317,13 +318,14 @@ public class insertToDb {
         return list;
     }
         public void insertToSent(String title,String msgbody,String phone){
-            String sql="insert into sms.sms_sent(title,createtime,message_body,receiverphone)values(?,?,?,?)";
+            String sql="insert into sms.sms_sent(title,createtime,message_body,receiverphone,version)values(?,?,?,?,?)";
             try{
                 statement=connection.prepareStatement(sql);
                 statement.setString(1,title);
                 statement.setDate(2,new java.sql.Date(new java.util.Date().getTime()));
                 statement.setString(3,msgbody);
                 statement.setString(4,phone);
+                statement.setString(5,"0");
                 statement.executeUpdate();
             }catch (SQLException e){
                 e.printStackTrace();
