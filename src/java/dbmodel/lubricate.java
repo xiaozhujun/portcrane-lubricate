@@ -32,6 +32,12 @@ public class lubricate {
 
     private Date lubricatetime;
 
+    private String title;
+
+    private String msgcontent;
+
+    private int id;
+
     public String getName() {
         return name;
     }
@@ -110,5 +116,29 @@ public class lubricate {
 
     public void setLubricatetime(Date lubricatetime) {
         this.lubricatetime = lubricatetime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMsgcontent() {
+        return msgcontent;
+    }
+
+    public void setMsgcontent(String msgcontent) {
+        this.msgcontent = msgcontent;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

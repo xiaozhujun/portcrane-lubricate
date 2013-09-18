@@ -40,11 +40,9 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-
          runtime 'mysql:mysql-connector-java:5.1.22'
         runtime 'junit:junit:4.11'
         runtime 'log4j:log4j:1.2.17'
-
         runtime 'javax.servlet:servlet-api:2.5'
         runtime 'org.apache.commons:commons-lang3:3.1'
         runtime 'commons-collections:commons-collections:3.2.1'

@@ -1,4 +1,5 @@
 package db;
+import com.botest.utils.smsutils.SMS;
 import dbmodel.MyDataSource;
 import java.sql.*;
 import java.util.*;
@@ -111,18 +112,18 @@ public class insertToDb {
            lubricate l=(lubricate)t.next();
             //System.out.print(l.getDays()+"------"+l.getName()+"-------"+l.getRefuelcycle());
             if(l.getRefuelcycle().equals("一周")){
-                 if(l.getDays()<7&&l.getDays()>7*3/4){
+                if(l.getDays()>7*3/4){
                      //插入数据，将信息内容置为未发送
-                     insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+                     insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                  }else{
                     System.out.println("不发送");
                  }
             }
             if(l.getRefuelcycle().equals("三个月")){
                System.out.print("进入三个月");
-               if(l.getDays()<90&&l.getDays()>90*3/4){
+               if(l.getDays()>90*3/4){
                    //插入数据，将信息内容置为未发送
-                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                }else{
                    System.out.println("不发送");
                }
@@ -131,7 +132,7 @@ public class insertToDb {
                System.out.print("进入一天");
                if(l.getDays()>1){
                    //插入数据，将信息内容置为未发送
-                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期为:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime(),l.getPhone(),l.getRefuelcycle());
+                   insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期为:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                }else{
                    System.out.println("不发送");
                }
@@ -192,8 +193,129 @@ public class insertToDb {
         }
         return list;
     }
+    public List<lubricate> getTitleAndPhone(){                       //通过status和周期得标题和电话
+        String sql="select s.title,s.receiverphone from sms.sms_send s where status=? and period=? group by s.receiverphone";
+        List<lubricate> list=new ArrayList<lubricate>();
+        try{
+            List<String> l1=getPeriod();
+            Iterator it=l1.iterator();
+            while(it.hasNext()){
+                String p=(String)it.next();
+                statement=connection.prepareStatement(sql);
+                statement.setString(1,"未发送");
+                statement.setString(2,p);
+
+            rs=statement.executeQuery();
+            while(rs.next()){
+                lubricate l=new lubricate();
+                l.setTitle(rs.getString(1));
+                l.setPhone(rs.getString(2));
+                list.add(l);
+            }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<lubricate> getMsg(){                                        //通过状态和周期得到id和具体的润滑项
+        String sql="select s.id,s.message_body from sms.sms_send s where status=? and period=?";
+        List<lubricate> list=new ArrayList<lubricate>();
+        try{
+
+            List<String> l1=getPeriod();
+            Iterator it=l1.iterator();
+            while(it.hasNext()){
+                String p=(String)it.next();
+                statement=connection.prepareStatement(sql);
+                statement.setString(1,"未发送");
+                statement.setString(2,p);
+
+            rs=statement.executeQuery();
+            while(rs.next()){
+                lubricate l=new lubricate();
+                l.setId(rs.getInt(1));
+                l.setMsgcontent(rs.getString(2));
+                list.add(l);
+            }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+             return list;
+    }
+    public void updateSms(int id){                                      //若发送成功，则将status置为已发送
+         String sql="update sms.sms_send set status=?";
+        try{
+            statement=connection.prepareStatement(sql);
+            statement.setString(1,"已发送");
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void sendSms(){                                            //发送短信
+        List<lubricate> tlist=getTitleAndPhone();
+        List<lubricate> list=getMsg();
+        Iterator it=list.iterator();
+        Iterator it1=tlist.iterator();
+        String title=null;
+        String msgcontent="具体的需要润滑的项为:";
+        String phone=null;
+        int id=0;
+        String sendcontent="您好!您的设备需要润滑了";
+        lubricate l=null;
+        boolean f=false;
+        while(it1.hasNext()){
+          l=(lubricate)it1.next();
+          phone=l.getPhone();
+
+        while(it.hasNext()){
+           l=(lubricate)it.next();
+           msgcontent+=l.getMsgcontent()+".";
+            id=l.getId();
+        }
+        }
+        if(title!=""&&msgcontent!=""&&phone!=""){
+            sendcontent+=","+msgcontent;
+            SMS s=new SMS();
+            System.out.print(sendcontent.length()+"长度");
+            for(int i=0;i<=sendcontent.length();i+=69){                //一条短信长度为69
+                System.out.println(i+"之前");
+                if((i+69)<sendcontent.length()){
+                     f=s.sendSms("COM4", phone, sendcontent.substring(i,i+69));
+                    System.out.println(sendcontent.substring(i,i+69));
+                }else{
+                     f=s.sendSms("COM4", phone, sendcontent.substring(i,sendcontent.length()));
+
+                }
+            }
+            if(f){
+            updateSms(id);
+            }else{
+                System.out.print("短信发送不成功");
+            }
+        }
+        }
+       public List<String> getPeriod(){                              //得到要发短信的周期
+           String sql="select s.period from sms.sms_send s group by s.period";
+           List<String> list=new ArrayList<String>();
+           try{
+               statement=connection.prepareStatement(sql);
+               rs=statement.executeQuery();
+               while(rs.next()){
+                String s=rs.getString(1);
+                   list.add(s);
+               }
+           }catch (SQLException e){
+               e.printStackTrace();
+           }
+              return list;
+       }
+
      public static void main(String args[]){
          insertToDb d=new insertToDb();
-           d.executeJob();
+          /* d.executeJob();*/
+        d.sendSms();
      }
 }
