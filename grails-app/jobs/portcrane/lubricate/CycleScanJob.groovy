@@ -8,7 +8,7 @@ import java.util.*;
 class CycleScanJob {
     static triggers = {
      /* simple repeatInterval: 5000l // execute job once in 5 seconds*/
-        simple repeatInterval: 200000
+        simple repeatInterval: 50000
     }
 
     def execute() {
