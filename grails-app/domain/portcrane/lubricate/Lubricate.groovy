@@ -8,6 +8,7 @@ class Lubricate {
     String lube;
     String refuelcycle;
     String cleancycle;
+    Date lubricateremind;
     static constraints = {
     }
 }

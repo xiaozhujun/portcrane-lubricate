@@ -1,4 +1,3 @@
-
 <%@ page import="portcrane.lubricate.Lubricate" %>
 <!DOCTYPE html>
 <html>
@@ -24,27 +23,23 @@
                 <g:if test="${lubricateInstance?.name}">
                     <li class="fieldcontain">
                         <span id="name-label" class="property-label"><g:message code="lubricate.name.label" default="Name" /></span>
-
                         <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${lubricateInstance}" field="name"/></span>
-
                     </li>
                 </g:if>
-                <g:if test="${lubricateInstance?.location}">
-                    <li class="fieldcontain">
-                        <span id="location-label" class="property-label"><g:message code="lubricate.location.label" default="Location" /></span>
-
-                        <span class="property-value" aria-labelledby="location-label"><g:fieldValue bean="${lubricateInstance}" field="location"/></span>
-
-                    </li>
-                </g:if>
-                <g:if test="${lubricateInstance?.number}">
-                    <li class="fieldcontain">
-                        <span id="number-label" class="property-label"><g:message code="lubricate.number.label" default="Number" /></span>
-
-                        <span class="property-value" aria-labelledby="number-label"><g:fieldValue bean="${lubricateInstance}" field="number"/></span>
-
-                    </li>
-                </g:if>
+				<g:if test="${lubricateInstance?.location}">
+				<li class="fieldcontain">
+					<span id="location-label" class="property-label"><g:message code="lubricate.location.label" default="Location" /></span>
+						<span class="property-value" aria-labelledby="location-label"><g:fieldValue bean="${lubricateInstance}" field="location"/></span>
+				</li>
+				</g:if>
+				<g:if test="${lubricateInstance?.lube}">
+				<li class="fieldcontain">
+					<span id="lube-label" class="property-label"><g:message code="lubricate.lube.label" default="Lube" /></span>
+					
+						<span class="property-value" aria-labelledby="lube-label"><g:fieldValue bean="${lubricateInstance}" field="lube"/></span>
+					
+				</li>
+				</g:if>
                 <g:if test="${lubricateInstance?.type}">
                     <li class="fieldcontain">
                         <span id="type-label" class="property-label"><g:message code="lubricate.type.label" default="Type" /></span>
@@ -53,27 +48,40 @@
 
                     </li>
                 </g:if>
-				<g:if test="${lubricateInstance?.cleancycle}">
+				<g:if test="${lubricateInstance?.number}">
 				<li class="fieldcontain">
-					<span id="cleancycle-label" class="property-label"><g:message code="lubricate.cleancycle.label" default="Cleancycle" /></span>
+					<span id="number-label" class="property-label"><g:message code="lubricate.number.label" default="Number" /></span>
 					
-						<span class="property-value" aria-labelledby="cleancycle-label"><g:fieldValue bean="${lubricateInstance}" field="cleancycle"/></span>
+						<span class="property-value" aria-labelledby="number-label"><g:fieldValue bean="${lubricateInstance}" field="number"/></span>
 					
 				</li>
 				</g:if>
-				<g:if test="${lubricateInstance?.lube}">
-				<li class="fieldcontain">
-					<span id="lube-label" class="property-label"><g:message code="lubricate.lube.label" default="Lube" /></span>
-					
-						<span class="property-value" aria-labelledby="lube-label"><g:fieldValue bean="${lubricateInstance}" field="lube"/></span>
-				</li>
-				</g:if>
+                <g:if test="${lubricateInstance?.cleancycle}">
+                    <li class="fieldcontain">
+                        <span id="cleancycle-label" class="property-label"><g:message code="lubricate.cleancycle.label" default="Cleancycle" /></span>
+
+                        <span class="property-value" aria-labelledby="cleancycle-label"><g:fieldValue bean="${lubricateInstance}" field="cleancycle"/></span>
+
+                    </li>
+                </g:if>
 				<g:if test="${lubricateInstance?.refuelcycle}">
 				<li class="fieldcontain">
 					<span id="refuelcycle-label" class="property-label"><g:message code="lubricate.refuelcycle.label" default="Refuelcycle" /></span>
+					
 						<span class="property-value" aria-labelledby="refuelcycle-label"><g:fieldValue bean="${lubricateInstance}" field="refuelcycle"/></span>
+					
 				</li>
 				</g:if>
+                <g:if test="${lubricateInstance?.lubricateremind}">
+                    <li class="fieldcontain">
+                        <span id="lubricateremind-label" class="property-label"><g:message code="lubricate.lubricateremind.label" default="Lubricateremind" /></span>
+
+                        <span class="property-value" aria-labelledby="lubricateremind-label"><g:formatDate date="${lubricateInstance?.lubricateremind}" /></span>
+
+                    </li>
+                </g:if>
+
+			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

@@ -63,8 +63,8 @@ class LubricateController {
         if (version != null) {
             if (lubricateInstance.version > version) {
                 lubricateInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'lubricate.label', default: 'Lubricate')] as Object[],
-                        "Another user has updated this Lubricate while you were editing")
+                          [message(code: 'lubricate.label', default: 'Lubricate')] as Object[],
+                          "Another user has updated this Lubricate while you were editing")
                 render(view: "edit", model: [lubricateInstance: lubricateInstance])
                 return
             }
@@ -80,9 +80,7 @@ class LubricateController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'lubricate.label', default: 'Lubricate'), lubricateInstance.id])
         redirect(action: "show", id: lubricateInstance.id)
     }
-    def archive(){
-        render (view:"archive")
-    }
+
     def delete(Long id) {
         def lubricateInstance = Lubricate.get(id)
         if (!lubricateInstance) {
@@ -101,5 +99,4 @@ class LubricateController {
             redirect(action: "show", id: id)
         }
     }
-
 }

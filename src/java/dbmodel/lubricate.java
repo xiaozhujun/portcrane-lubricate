@@ -38,6 +38,10 @@ public class lubricate {
 
     private int id;
 
+    private int remindtime;
+
+    private String difftime;
+
     public String getName() {
         return name;
     }
@@ -140,5 +144,21 @@ public class lubricate {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getRemindtime() {
+        return remindtime;
+    }
+
+    public void setRemindtime(int remindtime) {
+        this.remindtime = remindtime;
+    }
+
+    public String getDifftime() {
+        return difftime;
+    }
+
+    public void setDifftime(String difftime) {
+        this.difftime = difftime;
     }
 }

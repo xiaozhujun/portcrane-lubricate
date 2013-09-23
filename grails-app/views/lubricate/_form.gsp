@@ -9,11 +9,19 @@
     <g:textField name="name" value="${lubricateInstance?.name}"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'location', 'error')} ">
-    <label for="location">
-        <g:message code="lubricate.location.label" default="Location" />
+	<label for="location">
+		<g:message code="lubricate.location.label" default="Location" />
+		
+	</label>
+	<g:textField name="location" value="${lubricateInstance?.location}"/>
+</div>
 
-    </label>
-    <g:textField name="location" value="${lubricateInstance?.location}"/>
+<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'lube', 'error')} ">
+	<label for="lube">
+		<g:message code="lubricate.lube.label" default="Lube" />
+		
+	</label>
+	<g:textField name="lube" value="${lubricateInstance?.lube}"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'type', 'error')} ">
     <label for="type">
@@ -23,25 +31,18 @@
     <g:textField name="type" value="${lubricateInstance?.type}"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'number', 'error')} ">
-    <label for="number">
-        <g:message code="lubricate.number.label" default="Number" />
-
-    </label>
-    <g:textField name="number" value="${lubricateInstance?.number}"/>
-</div>
-<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'lube', 'error')} ">
-    <label for="lube">
-        <g:message code="lubricate.lube.label" default="Lube" />
-
-    </label>
-    <g:textField name="lube" value="${lubricateInstance?.lube}"/>
-</div>
-<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'cleancycle', 'error')} ">
-	<label for="cleancycle">
-		<g:message code="lubricate.cleancycle.label" default="Cleancycle" />
+	<label for="number">
+		<g:message code="lubricate.number.label" default="Number" />
 		
 	</label>
-	<g:textField name="cleancycle" value="${lubricateInstance?.cleancycle}"/>
+	<g:textField name="number" value="${lubricateInstance?.number}"/>
+</div>
+<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'cleancycle', 'error')} ">
+    <label for="cleancycle">
+        <g:message code="lubricate.cleancycle.label" default="Cleancycle" />
+
+    </label>
+    <g:textField name="cleancycle" value="${lubricateInstance?.cleancycle}"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'refuelcycle', 'error')} ">
 	<label for="refuelcycle">
@@ -49,6 +50,13 @@
 		
 	</label>
 	<g:textField name="refuelcycle" value="${lubricateInstance?.refuelcycle}"/>
+</div>
+<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'lubricateremind', 'error')} required">
+    <label for="lubricateremind">
+        <g:message code="lubricate.lubricateremind.label" default="Lubricateremind" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:datePicker name="lubricateremind" precision="day"  value="${lubricateInstance?.lubricateremind}"  />
 </div>
 
 
