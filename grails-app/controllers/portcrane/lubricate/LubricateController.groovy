@@ -99,4 +99,7 @@ class LubricateController {
             redirect(action: "show", id: id)
         }
     }
+    def archive(){
+        render (view:"archive")
+    }
 }

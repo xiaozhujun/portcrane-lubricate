@@ -116,41 +116,38 @@ public class insertToDb {
             lubricate l=(lubricate)t.next();
             //System.out.print(l.getDays()+"------"+l.getName()+"-------"+l.getRefuelcycle());
             if(l.getRefuelcycle().equals("一周")){
-                l.setRemindtime(7-Integer.parseInt(l.getDifftime()));
+                if(l.getDays()<7){                         //l.getDays()是求出当前日期距离润滑时间的间隔，90-l.getDays()求出距离润滑周期的时间
+                l.setRemindtime(7-l.getDays());
                 System.out.print(l.getRemindtime()+"提醒时间");
-                if(l.getDays()>l.getRemindtime()&&l.getDays()<=7){
-                    System.out.print(l.getDays()-l.getRemindtime()+"hhh");
-                if((l.getDays()-l.getRemindtime())>=5){
+                if(l.getRemindtime()>=1&&l.getRemindtime()<=l.getDifftime()){         //当这个距离时间在1到3天之间时开始短信提醒
                     //插入数据，将信息内容置为未发送
-                    insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
+                    insetToSend("您的设备需要润滑了",""+l.getName()+",润滑周期:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离上一次润滑有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                 }else{
                     System.out.println("不发送");
                 }
                 }else{
-                    System.out.print("无需润滑");
+                    insetToSend("您的设备需要润滑了",""+l.getName()+",润滑周期:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离上一次润滑有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                 }
             }
             if(l.getRefuelcycle().equals("三个月")){
                 System.out.print("进入三个月");
-                l.setRemindtime(90-Integer.parseInt(l.getDifftime()));
-                System.out.print(l.getRemindtime()+"提醒时间1");
-                if(l.getDays()>l.getRemindtime()&&l.getDays()<=90){
-                    System.out.print(l.getDays()-l.getRemindtime()+"sss");
-                if((l.getDays()-l.getRemindtime())>=2){
+                if(l.getDays()<90){
+                    l.setRemindtime(90-l.getDays());      //l.getDays()是求出当前日期距离润滑时间的间隔，90-l.getDays()求出距离润滑周期的时间
+                if(l.getRemindtime()>=1&&l.getRemindtime()<=l.getDifftime()){         //当这个距离时间在1到8天之间时开始短信提醒
                     //插入数据，将信息内容置为未发送
-                    insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
+                    insetToSend("您的设备需要润滑了",""+l.getName()+",润滑周期:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离上一次润滑有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                 }else{
                     System.out.println("不发送");
                 }
                 }else{
-                    System.out.print("无需润滑");
+                    insetToSend("您的设备需要润滑了",""+l.getName()+",润滑周期:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离上一次润滑有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                 }
             }
             if(l.getRefuelcycle().equals("一天")){
                 System.out.print("进入一天");
                 if(l.getDays()>=1){
                     //插入数据，将信息内容置为未发送
-                    insetToSend("您的设备需要润滑了","名称:"+l.getName()+",润滑周期为:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离现在有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
+                    insetToSend("您的设备需要润滑了",""+l.getName()+",润滑周期为:"+l.getRefuelcycle()+",上一次润滑的时间为:"+l.getLubricatetime()+",离上一次的润滑有"+l.getDays()+"天",l.getPhone(),l.getRefuelcycle());
                 }else{
                     System.out.println("不发送");
                 }
@@ -192,7 +189,7 @@ public class insertToDb {
         return list;
     }
     public List<lubricate> getlubricateDays(){       //有devnum关联求出当前日期与润滑时间的相隔的天数
-        String sql="select datediff(now(),lr.lubricatetime),l.name,l.refuelcycle,d.phone,lr.lubricatetime,datediff(l.lubricateremind,lr.lubricatetime) from lubricate_record lr,lubricate l,devicelubricate d where l.number=lr.devnum and lr.devnum=d.device_num";
+        String sql="select datediff(now(),lr.lubricatetime),l.name,l.refuelcycle,d.phone,lr.lubricatetime,l.remindday from lubricate_record lr,lubricate l,devicelubricate d where l.number=lr.devnum and lr.devnum=d.device_num";
         List<lubricate> list=new ArrayList<lubricate>();
         try{
             statement=connection.prepareStatement(sql);
@@ -204,7 +201,7 @@ public class insertToDb {
                 l.setRefuelcycle(rs.getString(3));
                 l.setPhone(rs.getString(4));
                 l.setLubricatetime(rs.getDate(5));
-                l.setDifftime(rs.getString(6));
+                l.setDifftime(rs.getInt(6));
                 list.add(l);
             }
         }catch (SQLException e){

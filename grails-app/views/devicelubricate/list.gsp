@@ -21,21 +21,22 @@
 			<table>
 				<thead>
 					<tr>
-                     <g:sortableColumn property="username" title="${message(code: 'devicelubricate.username.label', default: 'Username')}" />
+                        <g:sortableColumn property="deviceNum" title="${message(code: 'devicelubricate.deviceNum.label', default: 'Device Num')}" />
 
-						<g:sortableColumn property="deviceNum" title="${message(code: 'devicelubricate.deviceNum.label', default: 'Device Num')}" />
-					
-						<g:sortableColumn property="phone" title="${message(code: 'devicelubricate.phone.label', default: 'Phone')}" />
-                      <th>操作</th>
+                        <g:sortableColumn property="username" title="${message(code: 'devicelubricate.username.label', default: 'Username')}" />
+
+						  <g:sortableColumn property="phone" title="${message(code: 'devicelubricate.phone.label', default: 'Phone')}" />
+
+                        <th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${devicelubricateInstanceList}" status="i" var="devicelubricateInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                     <td><g:link action="show" id="${devicelubricateInstance.id}">${fieldValue(bean: devicelubricateInstance, field: "deviceNum")}</g:link></td>
+
                      <td>${fieldValue(bean: devicelubricateInstance, field: "username")}</td>
 
-                     <td><g:link action="show" id="${devicelubricateInstance.id}">${fieldValue(bean: devicelubricateInstance, field: "deviceNum")}</g:link></td>
-					
 						<td>${fieldValue(bean: devicelubricateInstance, field: "phone")}</td>
                         <td>
                             <g:form>

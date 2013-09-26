@@ -44,32 +44,36 @@
     <div id="container">
         <div id="menuContainer">
             <div class="menuFunc">
-                <div class="menuFuncName"><p>润滑管理</p></div>
+                <div class="menuFuncName"><p>设备润滑项管理</p></div>
+                <div class="menuItemList">
+                    <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'lubricate']">添加设备润滑项</g:link></span></div>
+                    <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'lubricate']">设备润滑项列表</g:link></span></div>
+                </div>
+            </div>
+            <div class="menuFunc">
+                <div class="menuFuncName"><p>自动润滑管理</p></div>
                 <div class="menuItemList">
                     <div class="menuItem"><span id="d1"><g:link url="[action:'archive',controller:'lubricate']">自动润滑的档案管理</g:link></span></div>
-                 </div>
+                </div>
+            </div>
+            <div class="menuFunc">
+                <div class="menuFuncName"><p>手动润滑管理</p></div>
                 <div class="menuItemList">
                     <div class="menuItem"><span id="d1"><g:link url="[action:'userupload',controller:'device']">手动润滑周期管理</g:link></span></div>
                 </div>
+
                 <div class="menuFunc">
-                    <div class="menuFuncName"><p>自动润滑周期管理</p></div>
+                    <div class="menuFuncName"><p>设备负责信息管理</p></div>
                     <div class="menuItemList">
-                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'lubricate']">添加润滑信息</g:link></span></div>
-                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'lubricate']">润滑信息列表</g:link></span></div>
+                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'devicelubricate']">添加设备负责信息</g:link></span></div>
+                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'devicelubricate']">设备负责信息列表</g:link></span></div>
                     </div>
                 </div>
                 <div class="menuFunc">
-                    <div class="menuFuncName"><p>润滑设备管理</p></div>
+                    <div class="menuFuncName"><p>润滑记录管理</p></div>
                     <div class="menuItemList">
-                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'devicelubricate']">添加润滑设备信息</g:link></span></div>
-                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'devicelubricate']">润滑设备信息列表</g:link></span></div>
-                    </div>
-                </div>
-                <div class="menuFunc">
-                    <div class="menuFuncName"><p>润滑设备记录管理</p></div>
-                    <div class="menuItemList">
-                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'lubricateRecord']">添加润滑设备记录</g:link></span></div>
-                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'lubricateRecord']">润滑设备记录列表</g:link></span></div>
+                        <div class="menuItem" ><span id="d1"><g:link url="[action:'create',controller:'lubricateRecord']">添加润滑记录</g:link></span></div>
+                        <div class="menuItem"><span id="d1"><g:link url="[action:'list',controller:'lubricateRecord']">润滑记录列表</g:link></span></div>
                     </div>
                 </div>
             </div>

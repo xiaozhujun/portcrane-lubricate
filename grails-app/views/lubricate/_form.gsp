@@ -23,13 +23,6 @@
 	</label>
 	<g:textField name="lube" value="${lubricateInstance?.lube}"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'type', 'error')} ">
-    <label for="type">
-        <g:message code="lubricate.type.label" default="Type" />
-
-    </label>
-    <g:textField name="type" value="${lubricateInstance?.type}"/>
-</div>
 <div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'number', 'error')} ">
 	<label for="number">
 		<g:message code="lubricate.number.label" default="Number" />
@@ -51,13 +44,18 @@
 	</label>
 	<g:textField name="refuelcycle" value="${lubricateInstance?.refuelcycle}"/>
 </div>
-<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'lubricateremind', 'error')} required">
-    <label for="lubricateremind">
-        <g:message code="lubricate.lubricateremind.label" default="Lubricateremind" />
+<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'type', 'error')} ">
+	<label for="type">
+		<g:message code="lubricate.type.label" default="Type" />
+		
+	</label>
+	<g:textField name="type" value="${lubricateInstance?.type}"/>
+</div>
+<div class="fieldcontain ${hasErrors(bean: lubricateInstance, field: 'remindday', 'error')} required">
+    %{--<label for="remindday">
+        <g:message code="lubricate.remindday.label" default="Remindday" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="lubricateremind" precision="day"  value="${lubricateInstance?.lubricateremind}"  />
+    <g:field name="remindday" type="number" value="${lubricateInstance.remindday}" required=""/>--}%
+     距离下一次润滑<g:field name="remindday" type="number" value="${lubricateInstance.remindday}" required=""/>天以上提醒
 </div>
-
-
-

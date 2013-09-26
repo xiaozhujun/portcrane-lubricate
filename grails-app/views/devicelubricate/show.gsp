@@ -21,6 +21,13 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list devicelubricate">
+
+				<g:if test="${devicelubricateInstance?.deviceNum}">
+				<li class="fieldcontain">
+					<span id="deviceNum-label" class="property-label"><g:message code="devicelubricate.deviceNum.label" default="Device Num" /></span>
+						<span class="property-value" aria-labelledby="deviceNum-label"><g:fieldValue bean="${devicelubricateInstance}" field="deviceNum"/></span>
+				</li>
+				</g:if>
                 <g:if test="${devicelubricateInstance?.username}">
                     <li class="fieldcontain">
                         <span id="username-label" class="property-label"><g:message code="devicelubricate.username.label" default="Username" /></span>
@@ -28,12 +35,6 @@
                         <span class="property-value" aria-labelledby="username-label"><g:fieldValue bean="${devicelubricateInstance}" field="username"/></span>
                     </li>
                 </g:if>
-				<g:if test="${devicelubricateInstance?.deviceNum}">
-				<li class="fieldcontain">
-					<span id="deviceNum-label" class="property-label"><g:message code="devicelubricate.deviceNum.label" default="Device Num" /></span>
-						<span class="property-value" aria-labelledby="deviceNum-label"><g:fieldValue bean="${devicelubricateInstance}" field="deviceNum"/></span>
-				</li>
-				</g:if>
 				<g:if test="${devicelubricateInstance?.phone}">
 				<li class="fieldcontain">
 					<span id="phone-label" class="property-label"><g:message code="devicelubricate.phone.label" default="Phone" /></span>

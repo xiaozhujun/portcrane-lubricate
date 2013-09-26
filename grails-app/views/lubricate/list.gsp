@@ -32,10 +32,7 @@
                       <g:sortableColumn property="cleancycle" title="${message(code: 'lubricate.cleancycle.label', default: 'Cleancycle')}" />
 
                       <g:sortableColumn property="refuelcycle" title="${message(code: 'lubricate.refuelcycle.label', default: 'Refuelcycle')}" />
-
-                      <g:sortableColumn property="lubricateremind" title="${message(code: 'lubricate.lubricateremind.label', default: 'Lubricateremind')}" />
-
-                      <th>操作</th>
+					    <th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,23 +43,21 @@
 						<td>${fieldValue(bean: lubricateInstance, field: "location")}</td>
 					
 						<td>${fieldValue(bean: lubricateInstance, field: "lube")}</td>
-					
+
 						<td>${fieldValue(bean: lubricateInstance, field: "number")}</td>
 
                       <td><g:link action="show" id="${lubricateInstance.id}">${fieldValue(bean: lubricateInstance, field: "cleancycle")}</g:link></td>
 
-                       <td>${fieldValue(bean: lubricateInstance, field: "refuelcycle")}</td>
-
-                       <td><g:formatDate date="${lubricateInstance.lubricateremind}" /></td>
-					      <td>
-                             <g:form>
-                                 <fieldset class="buttons">
-                                     <g:hiddenField name="id" value="${lubricateInstance?.id}" />
-                                     <g:link class="edit" action="edit" id="${lubricateInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                                     <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                 </fieldset>
-                             </g:form>
-					     </td>
+                      <td>${fieldValue(bean: lubricateInstance, field: "refuelcycle")}</td>
+					    <td>
+                            <g:form>
+                                <fieldset class="buttons">
+                                    <g:hiddenField name="id" value="${lubricateInstance?.id}" />
+                                    <g:link class="edit" action="edit" id="${lubricateInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                                    <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                                </fieldset>
+                            </g:form>
+					    </td>
 					</tr>
 				</g:each>
 				</tbody>

@@ -40,7 +40,7 @@ public class lubricate {
 
     private int remindtime;
 
-    private String difftime;
+    private int difftime;
 
     public String getName() {
         return name;
@@ -154,11 +154,11 @@ public class lubricate {
         this.remindtime = remindtime;
     }
 
-    public String getDifftime() {
+    public int getDifftime() {
         return difftime;
     }
 
-    public void setDifftime(String difftime) {
+    public void setDifftime(int difftime) {
         this.difftime = difftime;
     }
 }
