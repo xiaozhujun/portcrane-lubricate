@@ -42,6 +42,8 @@ public class lubricate {
 
     private int difftime;
 
+    private int itemid;
+
     public String getName() {
         return name;
     }
@@ -160,5 +162,13 @@ public class lubricate {
 
     public void setDifftime(int difftime) {
         this.difftime = difftime;
+    }
+
+    public int getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(int itemid) {
+        this.itemid = itemid;
     }
 }

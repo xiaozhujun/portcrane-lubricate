@@ -14,9 +14,11 @@ class CycleScanJob {
     def execute() {
         // execute job
      print "job run";
+        //每次执行命令前先要将
     /* new insertToDb().executeJob();     实现自动检测润滑周期插入sms-send数据库*/
       /* new insertToDb().executeJobByHand();*/
-      //new insertToDb().executeJob();
+
+      new insertToDb().executeJob();
       //new insertToDb().sendSms();
     }
 }

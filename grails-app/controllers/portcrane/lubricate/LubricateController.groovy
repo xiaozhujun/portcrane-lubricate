@@ -1,11 +1,10 @@
 package portcrane.lubricate
 
+import db.insertToDb
 import org.springframework.dao.DataIntegrityViolationException
-
 class LubricateController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
     def index() {
         redirect(action: "list", params: params)
     }
@@ -27,6 +26,7 @@ class LubricateController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'lubricate.label', default: 'Lubricate'), lubricateInstance.id])
+        insertToDb.updateF(lubricateInstance.id)
         redirect(action: "show", id: lubricateInstance.id)
     }
 
@@ -63,8 +63,8 @@ class LubricateController {
         if (version != null) {
             if (lubricateInstance.version > version) {
                 lubricateInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'lubricate.label', default: 'Lubricate')] as Object[],
-                          "Another user has updated this Lubricate while you were editing")
+                        [message(code: 'lubricate.label', default: 'Lubricate')] as Object[],
+                        "Another user has updated this Lubricate while you were editing")
                 render(view: "edit", model: [lubricateInstance: lubricateInstance])
                 return
             }

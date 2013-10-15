@@ -1,7 +1,8 @@
 package portcrane.lubricate
 
+import dbmodel.lubricate
 import org.springframework.dao.DataIntegrityViolationException
-
+import db.insertToDb
 class LubricateRecordController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -43,6 +44,7 @@ class LubricateRecordController {
 
     def edit(Long id) {
         def lubricateRecordInstance = LubricateRecord.get(id)
+        System.out.print("--------------")
         if (!lubricateRecordInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'lubricateRecord.label', default: 'LubricateRecord'), id])
             redirect(action: "list")
@@ -54,6 +56,7 @@ class LubricateRecordController {
 
     def update(Long id, Long version) {
         def lubricateRecordInstance = LubricateRecord.get(id)
+        System.out.print("hahahhaha")
         if (!lubricateRecordInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'lubricateRecord.label', default: 'LubricateRecord'), id])
             redirect(action: "list")
@@ -78,6 +81,13 @@ class LubricateRecordController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'lubricateRecord.label', default: 'LubricateRecord'), lubricateRecordInstance.id])
+        String devid=insertToDb.getdevid(lubricateRecordInstance.id)
+        List<Integer> list=insertToDb.getItemId(devid)
+        Iterator it=list.iterator()
+        while(it.hasNext()){
+            int l1=(int)it.next()
+            insertToDb.updateF1(l1)
+        }
         redirect(action: "show", id: lubricateRecordInstance.id)
     }
 
