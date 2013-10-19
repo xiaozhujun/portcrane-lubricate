@@ -179,7 +179,7 @@ public class insertToDb {
         }
     }
     public List<String> getInspectResult(){         //查出所有异常的
-        String  sql="select d.numbers,itr.dnumber_id from inspect3.inspect_item_record itr,inspect3.device d where itr.dnumber_id=d.id and itr.ivalue_id=2  group by itr.dnumber_id";
+        String  sql="select d.numbers,itr.dnumber_id from inspectpartition.inspect_item_rec itr,inspectpartition.device d where itr.dnumber_id=d.id and itr.ivalue_id=2  group by itr.dnumber_id";
         String dnumber=null;
         List<String> list=new ArrayList<String>();
         try{
