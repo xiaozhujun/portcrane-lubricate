@@ -38,7 +38,7 @@
             <div class='tabItem ' url="structForcast/health-forecast.html" onclick="location.href='/main.html?devName=门机#01'">结构健康监测</div>
             <div class='tabItem' url="electricalForcast/health-forecast.html" onclick="location.href='/main.html?devName=门机#01'">电气健康监测</div>
             <div class='tabItem' onclick="location.href='/riskreport/'">健康诊断预报</div>
-            <div class='tabItem' url="risk-management.html" onclick="location.href='/main.html?devName=门机#01'">动态风险评估</div>
+            <div class='tabItem' url="risk-management.html" onclick="location.href='/main.html?devName=门机#01'">动态风险管理</div>
         </div>
     </div>
     <div id="container">
