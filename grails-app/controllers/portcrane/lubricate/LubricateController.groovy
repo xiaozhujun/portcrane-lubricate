@@ -102,4 +102,7 @@ class LubricateController {
     def archive(){
         render (view:"archive")
     }
+    def handLubricate(){
+        render(view: "handlubricate")
+    }
 }

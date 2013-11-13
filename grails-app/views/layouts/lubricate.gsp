@@ -57,11 +57,6 @@
                 </div>
             </div>
             <div class="menuFunc">
-                <div class="menuFuncName"><p>手动润滑管理</p></div>
-                <div class="menuItemList">
-                    <div class="menuItem"><span id="d1"><g:link url="[action:'userupload',controller:'device']">手动润滑周期管理</g:link></span></div>
-                </div>
-
                 <div class="menuFunc">
                     <div class="menuFuncName"><p>设备负责信息管理</p></div>
                     <div class="menuItemList">
